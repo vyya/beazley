@@ -13,20 +13,20 @@ extra_payment = 1000
 extra_payment_start_month = 1
 extra_payment_end_month = 60
 month = 0
-
+# Open a file for writing
+out = open('payments_plan.txt', 'w')
+# print formatted header and put an output to a file
+print('{:>5s} {:>10s} {:>10s} {:>10s}'.format('month', 'interest', 'remaining', 'price'), file=out)
 while principal > 0:
     month +=1
     interest = principal*(rate/12)
-    print(f'Interst:{interest}')
     principal = principal + interest - payment
-    print(f'Principal before extra:{principal}')
     if month in range(extra_payment_start_month, extra_payment_end_month+1):
         principal = principal - extra_payment
-    print(f'Principal:{principal}')
     total_paid += payment
-    print(f'Total paid: {total_paid}')
-    print(f'Month:{month}')
+    # print formatted table and put an output to a file
+    print('{:>5d} {:>10.2f} {:>10.2f} {:>10.2f}'.format(month, interest, total_paid - interest, principal ), file=out)
     
-    
+out.close()   
     #import pdb; pdb.set_trace()
 print(f'Total paid: {total_paid}')
