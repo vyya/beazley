@@ -26,11 +26,11 @@ def sev_files(filename, *, errors = 'warn'):
                     pass
             continue # skips to the next row  
         total += row[2] * row[3]
-        
+        print(row)
     return total
 """ files = glob.glob('Data/portfolio*.csv')
 for file in files:
     data = file
     total = sev_files(data) """
-total = sev_files('Data/missing.csv', errors = 'silent')
+total = sev_files('Data/portfolio.csv', errors = 'silent')
 print('Total cost=', total)
